@@ -14,11 +14,8 @@ namespace Mobilya.Entities
         [Required]
         [StringLength(50)]
         public string ProductName { get; set; }
-        public int ProductDescription { get; set; }
-        public int ProductPrice { get; set; }
-        [Required]
-        public bool ProductActive { get; set; }
-        public int ProductCategoryId { get; set; }
+        public string ProductDescription { get; set; }
+        public int ProductPrice { get; set; }          
 
         public Category category { get; set; }
 

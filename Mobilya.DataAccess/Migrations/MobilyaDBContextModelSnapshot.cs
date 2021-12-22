@@ -240,14 +240,8 @@ namespace Mobilya.DataAccess.Migrations
                     b.Property<bool>("IsActived")
                         .HasColumnType("bit");
 
-                    b.Property<bool>("ProductActive")
-                        .HasColumnType("bit");
-
-                    b.Property<int>("ProductCategoryId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("ProductDescription")
-                        .HasColumnType("int");
+                    b.Property<string>("ProductDescription")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("ProductName")
                         .IsRequired()

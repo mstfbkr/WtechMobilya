@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Mobilya.Api.Helpers;
 using Mobilya.Business.Abstract;
 using Mobilya.Entities;
 using Newtonsoft.Json;
@@ -10,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace Mobilya.Api.Controllers
 {
-    [Route("api/[controller]")] 
+    [Route("api/[controller]")]
     [ApiController]
     public class CategoryController : ControllerBase
     {
@@ -23,13 +24,42 @@ namespace Mobilya.Api.Controllers
 
         [HttpGet("GetAll")]
         public async Task<ActionResult<IEnumerable<Category>>> GetAll()
-        {            
+        {
             var categorys = await _categoryService.GetAllCategory();
             string JSONString = string.Empty;
             JSONString = JsonConvert.SerializeObject(categorys);
-            
+
             return Ok(JSONString);
         }
+
+        //[HttpGet("GetAll")]
+        //public async Task<Response<IEnumerable<Category>>> GetAll()
+        //{
+        //    var categorys = await _categoryService.GetAllCategory();
+
+        //    return new Response<IEnumerable<Category>>().Ok(categorys);
+
+        //     //return new Response<IEnumerable<Product>>().Ok(categorys);
+        //}
+
+
+
+        //[HttpGet("GetAll")]
+        //public async Task<Response<IEnumerable<Category>>> GetAll()
+        //{​​​​​​
+        //    var categorys = await _categoryService.GetAllCategory();
+        //    if (!categorys.Any())
+        //    {​​​​​​
+        //        return new Response<IEnumerable<Category>>().NoContent();
+        //    }​​​​​​
+        //    //List olsaydı .count parantez yazmamız doğru değil.
+        //    return new Response<IEnumerable<Product>>().Ok(categorys.Count(), categorys);
+        //}​​​​​​
+
+
+
+
+
 
 
         [HttpPost]
@@ -44,9 +74,9 @@ namespace Mobilya.Api.Controllers
         [HttpDelete("{id}")]
         public IActionResult Delete(Category category)
         {
-                _categoryService.DeleteCategory(category);
-                return Ok("Category Deleted");
-            
+            _categoryService.DeleteCategory(category);
+            return Ok("Category Deleted");
+
         }
 
         [HttpPut]

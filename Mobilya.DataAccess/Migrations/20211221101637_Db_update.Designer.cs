@@ -10,8 +10,8 @@ using Mobilya.DataAccess;
 namespace Mobilya.DataAccess.Migrations
 {
     [DbContext(typeof(MobilyaDBContext))]
-    [Migration("20211213061001_Deneme23")]
-    partial class Deneme23
+    [Migration("20211221101637_Db_update")]
+    partial class Db_update
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -242,14 +242,8 @@ namespace Mobilya.DataAccess.Migrations
                     b.Property<bool>("IsActived")
                         .HasColumnType("bit");
 
-                    b.Property<bool>("ProductActive")
-                        .HasColumnType("bit");
-
-                    b.Property<int>("ProductCategoryId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("ProductDescription")
-                        .HasColumnType("int");
+                    b.Property<string>("ProductDescription")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("ProductName")
                         .IsRequired()
@@ -354,9 +348,8 @@ namespace Mobilya.DataAccess.Migrations
                         .HasMaxLength(256)
                         .HasColumnType("nvarchar(256)");
 
-                    b.Property<string>("PassWord")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("PassWord")
+                        .HasColumnType("int");
 
                     b.Property<string>("PasswordHash")
                         .HasColumnType("nvarchar(max)");
@@ -375,9 +368,6 @@ namespace Mobilya.DataAccess.Migrations
 
                     b.Property<string>("SecurityStamp")
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("TelePhone")
-                        .HasColumnType("int");
 
                     b.Property<bool>("TwoFactorEnabled")
                         .HasColumnType("bit");

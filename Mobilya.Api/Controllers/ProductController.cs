@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Mobilya.Api.Helpers;
 using Mobilya.Business.Abstract;
 using Mobilya.Entities;
 using System;
@@ -7,7 +8,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Mobilya.Api.Controllers
+namespace Mobilya.Api.Controllers 
 {
     [Route("api/[controller]")]
     [ApiController]
@@ -20,13 +21,25 @@ namespace Mobilya.Api.Controllers
             _productService = productService;
         }
 
+        //[HttpGet("GetAll")]
+        //public async Task<ActionResult<IEnumerable<Product>>> GetAll()
+        //{
+        //    var products = await _productService.GetAllProduct();
+        //    return Ok(products);
+        //}
 
         [HttpGet("GetAll")]
-        public async Task<ActionResult<IEnumerable<Product>>> GetAll()
+        public async Task<Response<IEnumerable<Product>>> GetAll()
         {
             var products = await _productService.GetAllProduct();
-            return Ok(products);
+            if (!products.Any())
+            {
+                return new Response<IEnumerable<Product>>().NoContent();
+            }
+            //List olsaydı .count parantez yazmamız dpğru değil.
+            return new Response<IEnumerable<Product>>().Ok(products.Count(), products);
         }
+
 
         [HttpPost]
         [Route("[action]")]
@@ -38,10 +51,8 @@ namespace Mobilya.Api.Controllers
         [HttpDelete("{id}")]
         public IActionResult Delete(Product product)
         {
-           
                 _productService.DeleteProduct(product);
-                return Ok("Product Deleted");
-          
+                return Ok("Product Deleted");          
         }
 
         [HttpPut]
@@ -53,7 +64,5 @@ namespace Mobilya.Api.Controllers
             }
             return NotFound();
         }
-
-
     }
 }
