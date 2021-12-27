@@ -25,8 +25,6 @@ namespace Mobilya.Business.Concrete
             var newcat = await _unitOfWork.category.AddAsync(category);
             try
             {
-
-
                 await _unitOfWork.CommitAsync();
 
 

@@ -3,7 +3,7 @@ var KTDatatablesDataSourceAjaxServer = function () {
 
 
     var initTable1 = function () {
-        var table = $('#kt_datatable_example_1');
+        var table = $('#kt_customers_table');
         // begin first table
         table.DataTable({
             responsive: true,
@@ -12,19 +12,23 @@ var KTDatatablesDataSourceAjaxServer = function () {
             serverSide: true,
             ajax: {
                 url: 'https://localhost:44375/api/product/getall',
-                type: 'GET',
+                type: 'POST',
                
             },
+            data: {
+                // parameters for custom backend script demo
+                columnsDef: [
+                    'productId', 'productName',
+                    'productDescription', 'productPrice', 'creatingDate', 'updatedDate', 'isActived', 'Actions'],
+            },
             columns: [
-                { data: 'ProductId' },
-                { data: 'ProductName' },
-                { data: 'ProductDescription' },
-                { data: 'ProductPrice' },
-                { data: 'category' },
-                { data: 'orders' },
-                { data: 'CreatingDate' },
-                { data: 'UpdatedDate' },
-                { data: 'IsActived' },
+                { data: 'productId' },
+                { data: 'productName' },
+                { data: 'productDescription' },
+                { data: 'productPrice' },                
+                { data: 'creatingDate' },
+                { data: 'updatedDate' },
+                { data: 'isActived' },
                 { data: null, responsivePriority: -1 },
             ],
             columnDefs: [

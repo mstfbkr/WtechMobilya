@@ -15,7 +15,6 @@ namespace Mobilya.DataAccess.Concrete
         private OrderRepository orderRepository;
         private PaymentRepository paymentRepository;
 
-
         public UnitOfWork(MobilyaDBContext mobilyaDBContext)
         {
             _mobilyaDBContext = mobilyaDBContext;
@@ -30,7 +29,6 @@ namespace Mobilya.DataAccess.Concrete
         public async Task<int> CommitAsync()
         {
             return await _mobilyaDBContext.SaveChangesAsync();
-
         }
 
         public void Dispose()

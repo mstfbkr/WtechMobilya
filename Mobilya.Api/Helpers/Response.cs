@@ -20,13 +20,12 @@ namespace Mobilya.Api.Helpers
             return new Response<T>() { Data = data, Code = HttpStatusCode.OK, Message = "Success", FriendlyMessage = friendlyMessage, TotalCount = totalCount };
         }
 
-
+         
 
         public Response<T> Created(T data, string friendlyMessage = "Successfully")
         {
             return new Response<T>() { Data = data, Code = HttpStatusCode.Created, Message = "Created", FriendlyMessage = friendlyMessage };
         }
-
 
 
         public Response<T> NoContent(string friendlyMessage = "No Content")
@@ -36,13 +35,11 @@ namespace Mobilya.Api.Helpers
         }
 
 
-
         public Response<T> NotFound(string friendlyMessage = "Not Found")
         {
             //bu sayfa yok
             return new Response<T>() { Code = HttpStatusCode.NotFound, Message = "Not Found", FriendlyMessage = friendlyMessage };
         }
-
 
 
         public Response<T> InternalServerError(string friendlyMessage = "Internal Server Error")
@@ -53,12 +50,10 @@ namespace Mobilya.Api.Helpers
         }
 
 
-
         public Response<T> ServiceUnavailable(string friendlyMessage = "Service Unavailable")
         {
             return new Response<T>() { Code = HttpStatusCode.ServiceUnavailable, Message = "Service Unavailable", FriendlyMessage = friendlyMessage };
         }
-
 
 
         public Response<T> Unauthorized(string friendlyMessage = "Unauthorized")
@@ -66,7 +61,6 @@ namespace Mobilya.Api.Helpers
             //token 
             return new Response<T>() { Code = HttpStatusCode.Unauthorized, Message = "Unauthorized", FriendlyMessage = friendlyMessage };
         }
-
 
 
         public Response<T> ModelStateValidation(List<string> errors, string friendlyMessage = "Bad Request")

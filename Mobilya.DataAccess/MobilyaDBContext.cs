@@ -9,13 +9,9 @@ namespace Mobilya.DataAccess
 {
     public class MobilyaDBContext : IdentityDbContext<Users, UserRole, int>
     {
-
-
         public MobilyaDBContext()
         {
-
         }
-
         public DbSet<Users> users { get; set; }
         public DbSet<UserAddress> UserAddresses { get; set; }
         public DbSet<Order> Orders { get; set; }
@@ -23,26 +19,12 @@ namespace Mobilya.DataAccess
         public DbSet<Product> Products { get; set; }
         public DbSet<Category> Categories { get; set; }
         public DbSet<Admin> Admins { get; set; }
-
-
-        //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        //{
-        //    base.OnConfiguring(optionsBuilder);
-        //    optionsBuilder.UseSqlServer("DefaultConnection");
-        //}
-
         public MobilyaDBContext(DbContextOptions<MobilyaDBContext> dbContextOptions) : base(dbContextOptions)
         {
-
         }
-
-
-
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);
-
         }
-
     }
 }

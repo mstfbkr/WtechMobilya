@@ -28,7 +28,7 @@ namespace Mobilya.Api.Controllers
         //    return Ok(products);
         //}
 
-        [HttpGet("GetAll")]
+        [HttpPost("GetAll")]
         public async Task<Response<IEnumerable<Product>>> GetAll()
         {
             var products = await _productService.GetAllProduct();
@@ -48,6 +48,7 @@ namespace Mobilya.Api.Controllers
             var createProduct = _productService.CreateProduct(product);
             return Ok(createProduct);
         }
+
         [HttpDelete("{id}")]
         public IActionResult Delete(Product product)
         {
