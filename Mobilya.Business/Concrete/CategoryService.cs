@@ -26,19 +26,12 @@ namespace Mobilya.Business.Concrete
             try
             {
                 await _unitOfWork.CommitAsync();
-
-
             }
             catch (Exception ex)
             {
-
                 throw;
             }
-
-
             return newcat;
-
-
         }
 
         public void DeleteCategory(Category category)

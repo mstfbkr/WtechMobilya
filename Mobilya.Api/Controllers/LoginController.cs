@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Mobilya.Api.Helpers;
+using Mobilya.Business.Abstract;
 using Mobilya.DataAccess;
 using Mobilya.Entities;
 using System;
@@ -27,16 +28,27 @@ namespace Mobilya.Api.Controllers
         //using Microsoft.Extensions.Configuration;  ekledik
         private readonly IConfiguration _configuration;
         private readonly GenericHelperMothods _genericHelperMothods;
+        private readonly IUserService _userService;
 
-
-        public LoginController(MobilyaDBContext context, IConfiguration configuration, GenericHelperMothods genericHelperMothods)
+        public LoginController(MobilyaDBContext context, IConfiguration configuration, GenericHelperMothods genericHelperMothods, IUserService userService)
         {
             _context = context;
             _configuration = configuration;
             _genericHelperMothods = genericHelperMothods;
+            _userService = userService;
         }
 
-
+        [HttpPost("Getall")]
+        public async Task<Response<IEnumerable<Users>>> GetAll()
+        {
+            var user = await _userService.GetAllUser();
+            if (!user.Any())
+            {
+                return new Response<IEnumerable<Users>>().NoContent();
+            }
+            return new Response<IEnumerable<Users>>().Ok(user.Count(), user);
+        }
+        
         [HttpPost("[action]")]//action yazınca metot ismini baz alır "Create" şeklinde baz alır ve /Create şeklinde urlde çıkar
         public async Task<bool> Create([FromBody] Users users)
         {
@@ -67,7 +79,7 @@ namespace Mobilya.Api.Controllers
             }
             return null;
         }
-       
+
 
 
     }

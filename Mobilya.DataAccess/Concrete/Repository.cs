@@ -47,5 +47,15 @@ namespace Mobilya.DataAccess.Concrete
             _mobilyaDBContext.Set<TEntity>().Update(entity);
             return entity;
         }
+
+        public IQueryable<TEntity> WithDetails()
+        {
+            throw new NotImplementedException();
+        }
+
+        //public IQueryable<TEntity> WithDetails()
+        //{
+        //   return _mobilyaDBContext.Set<TEntity>.Where()
+        //}
     }
 }

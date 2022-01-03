@@ -1,13 +1,12 @@
 ﻿"use strict";
 var KTDatatablesDataSourceAjaxServer = function () {
 
-
     var initTable1 = function () {
         var table = $('#kt_customers_table');
         // begin first table
-        table.DataTable({
+        table.DataTable({ 
             responsive: true,
-            searchDelay: 500,
+            searchDelay: 500, 
             processing: true,
             serverSide: true,
             ajax: {
@@ -35,7 +34,7 @@ var KTDatatablesDataSourceAjaxServer = function () {
                 {
                     targets: -1,
                     title: 'Actions',
-                    orderable: false,
+                    orderable: true,
                     render: function (data, type, full, meta) {
                         return '\
                             <div class="dropdown dropdown-inline">\
@@ -100,19 +99,12 @@ var KTDatatablesDataSourceAjaxServer = function () {
 
 
     return {
-
-
         //main function to initiate the module
         init: function () {
             initTable1();
         },
-
-
     };
-
-
 }();
-
 
 jQuery(document).ready(function () {
     KTDatatablesDataSourceAjaxServer.init();

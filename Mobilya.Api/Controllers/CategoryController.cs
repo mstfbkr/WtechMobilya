@@ -26,10 +26,7 @@ namespace Mobilya.Api.Controllers
         public async Task<ActionResult<IEnumerable<Category>>> GetAll()
         {
             var categorys = await _categoryService.GetAllCategory();
-            string JSONString = string.Empty;
-            JSONString = JsonConvert.SerializeObject(categorys);
-
-            return Ok(JSONString);
+            return Ok(categorys);
         }
 
         //[HttpGet("GetAll")]

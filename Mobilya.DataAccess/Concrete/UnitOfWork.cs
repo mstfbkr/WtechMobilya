@@ -14,6 +14,7 @@ namespace Mobilya.DataAccess.Concrete
         private AdminRepository adminRepository;
         private OrderRepository orderRepository;
         private PaymentRepository paymentRepository;
+        private UsersRepository usersRepository;
 
         public UnitOfWork(MobilyaDBContext mobilyaDBContext)
         {
@@ -25,6 +26,8 @@ namespace Mobilya.DataAccess.Concrete
         public IAdmin admin => adminRepository = adminRepository ?? new AdminRepository(_mobilyaDBContext);
         public IOrder order => orderRepository= orderRepository?? new OrderRepository(_mobilyaDBContext);
         public IPayment payment  => paymentRepository= paymentRepository?? new PaymentRepository(_mobilyaDBContext);
+
+        public IUsers users => usersRepository = usersRepository ?? new UsersRepository(_mobilyaDBContext);
 
         public async Task<int> CommitAsync()
         {

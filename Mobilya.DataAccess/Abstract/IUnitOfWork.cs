@@ -12,6 +12,7 @@ namespace Mobilya.DataAccess.Abstract
         IAdmin admin { get; }
         IOrder order { get; }
         IPayment payment { get; }
+        IUsers users { get; }
 
 
         Task<int> CommitAsync();
