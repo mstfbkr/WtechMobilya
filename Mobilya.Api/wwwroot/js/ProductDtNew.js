@@ -14,6 +14,10 @@ var KTDatatablesServerSide = function () {
             serverSide: true,
             order: [[5, 'desc']],
             stateSave: true,
+            dom: 'Bfrtip',
+            buttons: [
+                'copy', 'csv', 'excel', 'pdf', 'print'
+            ],
             select: {
                 style: 'os',
                 selector: 'td:first-child',
