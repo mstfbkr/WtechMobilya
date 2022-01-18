@@ -49,6 +49,22 @@
             </ul>
             <!--end::Breadcrumb-->
         </div>
+        <div class="dt-buttons">
+            <button class="dt-button buttons-copy buttons-html5" tabindex="0" aria-controls="example" type="button">
+                <span>Copy</span>
+            </button>
+            <button class="dt-button buttons-csv buttons-html5" tabindex="0" aria-controls="example" type="button">
+                <span>CSV</span>
+            </button>
+            <button class="dt-button buttons-excel buttons-html5" tabindex="0" aria-controls="example" type="button">
+                <span>Excel</span>
+            </button>
+            <button class="dt-button buttons-pdf buttons-html5" tabindex="0" aria-controls="example" type="button">
+                <span>PDF</span>
+            </button> <button class="dt-button buttons-print" tabindex="0" aria-controls="example" type="button">
+                <span>Print</span>
+            </button>
+        </div>
         <!--begin::Card-->
         <div class="card">
             <!--begin::Card header-->
@@ -75,7 +91,7 @@
                     <!--begin::Toolbar-->
                     <div class="d-flex justify-content-end" data-kt-customer-table-toolbar="base">
                         <!--begin::Filter-->
-                        <button type="button" class="btn btn-light-primary me-3" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">
+                        <button type="button" class="btn btn-light-primary me-3  dt-button buttons-excel buttons-html5" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">
                             <!--begin::Svg Icon | path: icons/duotune/general/gen031.svg-->
                             <span class="svg-icon svg-icon-2">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
@@ -169,11 +185,11 @@
                                     <path d="M18.75 8.25H17.75C17.1977 8.25 16.75 8.69772 16.75 9.25C16.75 9.80228 17.1977 10.25 17.75 10.25C18.3023 10.25 18.75 10.6977 18.75 11.25V18.25C18.75 18.8023 18.3023 19.25 17.75 19.25H5.75C5.19772 19.25 4.75 18.8023 4.75 18.25V11.25C4.75 10.6977 5.19771 10.25 5.75 10.25C6.30229 10.25 6.75 9.80228 6.75 9.25C6.75 8.69772 6.30229 8.25 5.75 8.25H4.75C3.64543 8.25 2.75 9.14543 2.75 10.25V19.25C2.75 20.3546 3.64543 21.25 4.75 21.25H18.75C19.8546 21.25 20.75 20.3546 20.75 19.25V10.25C20.75 9.14543 19.8546 8.25 18.75 8.25Z" fill="#C4C4C4"></path>
                                 </svg>
                             </span>
-                            <!--end::Svg Icon-->Export
+                            <!--end::Svg Icon-->Dışa Aktar
                         </button>
                         <!--end::Export-->
                         <!--begin::Add customer-->
-                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#kt_modal_add_customer">Add Customer</button>
+                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#kt_modal_add_customer">Ürün Ekle</button>
                         <!--end::Add customer-->
                     </div>
                     <!--end::Toolbar-->
@@ -192,31 +208,28 @@
             <!--begin::Card body-->
             <div class="card-body pt-0">
                 <!--begin::Table-->
-                <div class="container">
-                    <br />
-                    <div style="width:90%; margin:0 auto;">
-                        <table id="customerDatatable" class="table table-striped table-bordered dt-responsive nowrap" width="100%" cellspacing="0">
-                            <thead>
-                                <tr>
-                                    <th class="table-head-row">Product Id</th>
-                                    <th>Product Name</th>
-                                    
-                                    <th>Product Price</th>
-                                    <th>Creating Date</th>
-                                    <th>Updated Date</th>
-                                    <th>IsActived</th>
-                                    <th>Delete</th>
-                                </tr>
-                            </thead>
-                        </table>
-                    </div>
-                </div>
-
-
+                <table id="kt_datatable_example_1" class="table align-middle table-row-dashed fs-6 gy-5">
+                    <thead>
+                        <tr class="text-start text-gray-400 fw-bolder fs-7 text-uppercase gs-0">
+                            <th class="w-10px pe-2">
+                                <div class="form-check form-check-sm form-check-custom form-check-solid me-3">
+                                    <input class="form-check-input" type="checkbox" data-kt-check="true" data-kt-check-target="#kt_datatable_example_1 .form-check-input" value="1" />
+                                </div>
+                            </th>
+                            <th>Product Id</th>
+                            <th>Product Name</th>
+                            <th>Product Price</th>
+                            <th>Creating Date</th>
+                            <th>Updated Date</th>
+                            <th>IsActived</th>
+                            <th class="text-end min-w-100px">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody class="text-gray-600 fw-bold">
+                    </tbody>
+                </table>
                 <!--end::Table body-->
-
             </div>
-          
         </div>
         <!--end::Table-->
     </div>
@@ -258,10 +271,10 @@
                         <!--begin::Input group-->
                         <div class="fv-row mb-7 fv-plugins-icon-container">
                             <!--begin::Label-->
-                            <label class="required fs-6 fw-bold mb-2">Name</label>
+                            <label class="required fs-6 fw-bold mb-2">Product Name</label>
                             <!--end::Label-->
                             <!--begin::Input-->
-                            <input type="text" class="form-control form-control-solid" placeholder="" name="name" value="Sean Bean">
+                            <input type="text" class="form-control form-control-solid" placeholder="" name="name">
                             <!--end::Input-->
                             <div class="fv-plugins-message-container invalid-feedback"></div>
                         </div>
@@ -373,7 +386,7 @@
                                 </label>
                                 <!--end::Label-->
                                 <!--begin::Input-->
-                                <select name="country" aria-label="Select a Country" data-control="select2" data-placeholder="Select a Country..." data-dropdown-parent="#kt_modal_add_customer" class="form-select form-select-solid fw-bolder select2-hidden-accessible" data-select2-id="select2-data-10-124e" tabindex="-1" aria-hidden="true">
+                                <select name="country" aria-label="Select a Country" data-control="select2" data-placeholder="Select a Country..." data-dropdown-parent="#kt_modal_add_customer" class="form-select form-select-solid fw-bolder select2-hidden-accessible" data-select2-id="select2-data-10-m94y" tabindex="-1" aria-hidden="true">
                                     <option value="">Select a Country...</option>
                                     <option value="AF">Afghanistan</option>
                                     <option value="AX">Aland Islands</option>
@@ -589,7 +602,7 @@
                                     <option value="UA">Ukraine</option>
                                     <option value="AE">United Arab Emirates</option>
                                     <option value="GB">United Kingdom</option>
-                                    <option value="US" selected="selected" data-select2-id="select2-data-12-zg3l">United States</option>
+                                    <option value="US" selected="selected" data-select2-id="select2-data-12-iz7o">United States</option>
                                     <option value="UY">Uruguay</option>
                                     <option value="UZ">Uzbekistan</option>
                                     <option value="VU">Vanuatu</option>
@@ -599,7 +612,7 @@
                                     <option value="YE">Yemen</option>
                                     <option value="ZM">Zambia</option>
                                     <option value="ZW">Zimbabwe</option>
-                                </select><span class="select2 select2-container select2-container--bootstrap5" dir="ltr" data-select2-id="select2-data-11-a4lb" style="width: 100%;"><span class="selection"><span class="select2-selection select2-selection--single form-select form-select-solid fw-bolder" role="combobox" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-disabled="false" aria-labelledby="select2-country-uk-container" aria-controls="select2-country-uk-container"><span class="select2-selection__rendered" id="select2-country-uk-container" role="textbox" aria-readonly="true" title="United States">United States</span><span class="select2-selection__arrow" role="presentation"><b role="presentation"></b></span></span></span><span class="dropdown-wrapper" aria-hidden="true"></span></span>
+                                </select><span class="select2 select2-container select2-container--bootstrap5" dir="ltr" data-select2-id="select2-data-11-t2xo" style="width: 100%;"><span class="selection"><span class="select2-selection select2-selection--single form-select form-select-solid fw-bolder" role="combobox" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-disabled="false" aria-labelledby="select2-country-5i-container" aria-controls="select2-country-5i-container"><span class="select2-selection__rendered" id="select2-country-5i-container" role="textbox" aria-readonly="true" title="United States">United States</span><span class="select2-selection__arrow" role="presentation"><b role="presentation"></b></span></span></span><span class="dropdown-wrapper" aria-hidden="true"></span></span>
                                 <!--end::Input-->
                                 <div class="fv-plugins-message-container invalid-feedback"></div>
                             </div>
@@ -656,6 +669,8 @@
                 <!--end::Modal footer-->
                 <div></div>
             </form>
+
+
             <!--end::Form-->
         </div>
     </div>
@@ -701,7 +716,20 @@
                             <option value="pdf">PDF</option>
                             <option value="cvs">CVS</option>
                             <option value="zip">ZIP</option>
-                        </select><span class="select2 select2-container select2-container--bootstrap5" dir="ltr" data-select2-id="select2-data-14-pdr3" style="width: 100%;"><span class="selection"><span class="select2-selection select2-selection--single form-select form-select-solid" role="combobox" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-disabled="false" aria-labelledby="select2-format-u3-container" aria-controls="select2-format-u3-container"><span class="select2-selection__rendered" id="select2-format-u3-container" role="textbox" aria-readonly="true" title="Excel">Excel</span><span class="select2-selection__arrow" role="presentation"><b role="presentation"></b></span></span></span><span class="dropdown-wrapper" aria-hidden="true"></span></span>
+                        </select>
+                        <span class="select2 select2-container select2-container--bootstrap5" dir="ltr" data-select2-id="select2-data-14-pdr3" style="width: 100%;">
+                            <span class="selection">
+                                <span class="select2-selection select2-selection--single form-select form-select-solid" role="combobox" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-disabled="false" aria-labelledby="select2-format-u3-container" aria-controls="select2-format-u3-container">
+                                    <span class="select2-selection__rendered" id="select2-format-u3-container" role="textbox" aria-readonly="true" title="Excel">Excel</span>
+                                    <span class="select2-selection__arrow" role="presentation">
+                                        <b role="presentation">
+                                        </b>
+                                    </span>
+                                </span>
+                            </span>
+                            <span class="dropdown-wrapper" aria-hidden="true">
+                            </span>
+                        </span>
                         <!--end::Input-->
                     </div>
                     <!--end::Input group-->
@@ -754,7 +782,7 @@
                     <!--begin::Actions-->
                     <div class="text-center">
                         <button type="reset" id="kt_customers_export_cancel" class="btn btn-light me-3">Discard</button>
-                        <button type="submit" id="kt_customers_export_submit" class="btn btn-primary">
+                        <button type="submit" id="kt_customers_export_submit" class="btn btn-primary" onclick="Export2Doc('kt_datatable_example_1','OrnekRapor','ornek_cikti','0,5cm 0,5cm 0,5cm 0,5cm')">
                             <span class="indicator-label">Submit</span>
                             <span class="indicator-progress">
                                 Please wait...
@@ -790,20 +818,39 @@
 
 
 
+    <script src="~/NewJs/plugins.bundle.js"></script>
+    <script src="~/NewJs/scripts.bundle.js"></script>
+    <script src="~/NewJs/datatables.bundle.js"></script>
+    <script src="~/js/ProductDtNew.js"></script>
+    <script src="~/assets/js/custom/apps/customers/add.js"></script>
+    @*<script src="~/assets/js/export.js"></script>*@
 
 
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/lib/datatables/js/jquery.dataTables.min.js"></script>
-    <script src="~/lib/datatables/js/dataTables.bootstrap4.min.js"></script>
-    <script src="~/js/deneme.js"></script>
+
+
+    @*<script src="~/assets/js/custom/apps/customers/list/export.js"></script>*@
+
+    <script>
+        $(document).ready(function () {
+            $('#kt_datatable_example_1').DataTable({
+                dom: 'Bfrtip',
+                buttons: [
+                    'copy', 'csv', 'excel', 'pdf', 'print'
+                ]
+            });
+        });
+    </script>
+
+
+    <script src="    https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script src="    https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
+    <script src="    https://cdn.datatables.net/buttons/2.1.0/js/dataTables.buttons.min.js"></script>
+    <script src="    https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+    <script src="    https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js "></script>
+    <script src="    https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+    <script src="    https://cdn.datatables.net/buttons/2.1.0/js/buttons.html5.min.js "></script>
+    <script src="    https://cdn.datatables.net/buttons/2.1.0/js/buttons.print.min.js"></script>
 }
-
-<script src="~/assets/js/custom/apps/customers/list/export.js"></script>
-<script src="~/assets/js/custom/apps/customers/add.js" charset="windows-1254"></script>
-
-
-
 
 <!--end::Page Custom Javascript-->
 <!--end::Javascript-->
-}

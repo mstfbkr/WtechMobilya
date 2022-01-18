@@ -54,11 +54,6 @@ namespace Mobilya.Api.Controllers
         //}​​​​​​
 
 
-
-
-
-
-
         [HttpPost]
         [Route("[action]")]
         public async Task<IActionResult> Post([FromBody] Category category)

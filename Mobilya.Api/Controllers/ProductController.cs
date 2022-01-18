@@ -12,11 +12,12 @@ using System.Threading.Tasks;
 
 namespace Mobilya.Api.Controllers
 {
+    [Produces("application/json")]
     [Route("api/[controller]")]
     [ApiController]
     public class ProductController : ControllerBase
     {
-        protected const int NONE_QUERY_MAX_COUNT=100;
+        protected const int NONE_QUERY_MAX_COUNT = 100;
         private MobilyaDBContext _mobilyaDBContext;
         private IProductService _productService;
 
@@ -31,6 +32,35 @@ namespace Mobilya.Api.Controllers
         {
             var products = await _productService.GetAllProduct();
             return Ok(products);
+        }
+
+        [HttpGet("GetAlla")]
+        public async Task<ActionResult<IEnumerable<Product>>> GetAlla()
+        {
+            var draw = Request.Form["draw"].FirstOrDefault();
+            var start = Request.Form["start"].FirstOrDefault();
+            var length = Request.Form["length"].FirstOrDefault();
+            var sortColumn = Request.Form["columns[" + Request.Form["order[0][column]"].FirstOrDefault() + "][name]"].FirstOrDefault();
+            var sortColumnDirection = Request.Form["order[0][dir]"].FirstOrDefault();
+            var searchValue = Request.Form["search[value]"].FirstOrDefault();
+            int pageSize = length != null ? Convert.ToInt32(length) : 0;
+            int skip = start != null ? Convert.ToInt32(start) : 0;
+            int recordsTotal = 0;
+            var productdata = (from tempcustomer in await _productService.GetAllProduct() select tempcustomer);
+            if (!(string.IsNullOrEmpty(sortColumn) && string.IsNullOrEmpty(sortColumnDirection)))
+            {
+                productdata = productdata.OrderBy(s => s.ProductName == (sortColumn + " " + sortColumnDirection));
+            }
+            if (!string.IsNullOrEmpty(searchValue))
+            {
+                productdata = productdata.Where(m => m.ProductName.Contains(searchValue)
+                                            || m.ProductDescription.Contains(searchValue)
+                                            || m.ProductPrice.ToString().Contains(searchValue));
+            }
+            recordsTotal = productdata.Count();
+            var data = productdata.Skip(skip).Take(pageSize).ToList();
+            var jsonData = new { draw = draw, recordsFiltered = recordsTotal, recordsTotal = recordsTotal, data = data };
+            return Ok(jsonData);
         }
 
         //[HttpPost("GetAll")]
@@ -50,7 +80,7 @@ namespace Mobilya.Api.Controllers
 
 
         [HttpPost("GetAlldt")]
-        public async Task<IActionResult> GetProducts()
+        public async Task<ActionResult<IEnumerable<Product>>> GetProducts()
         {
             try
             {
@@ -66,7 +96,7 @@ namespace Mobilya.Api.Controllers
                 var productdata = (from tempcustomer in await _productService.GetAllProduct() select tempcustomer);
                 if (!(string.IsNullOrEmpty(sortColumn) && string.IsNullOrEmpty(sortColumnDirection)))
                 {
-                    productdata = productdata.OrderBy(s=> s.ProductName == (sortColumn + " " + sortColumnDirection));
+                    productdata = productdata.OrderBy(s => s.ProductName == (sortColumn + " " + sortColumnDirection));
                 }
                 if (!string.IsNullOrEmpty(searchValue))
                 {
@@ -84,18 +114,6 @@ namespace Mobilya.Api.Controllers
                 throw;
             }
         }
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -154,10 +172,11 @@ namespace Mobilya.Api.Controllers
             var createProduct = _productService.CreateProduct(product);
             return Ok(createProduct);
         }
-        [HttpDelete("{id}")]
-        public IActionResult Delete(Product product)
+        [HttpPost("[action]/{id}")]
+        public async Task<IActionResult> DeleteAsync(int id)
         {
-            _productService.DeleteProduct(product);
+            var product = await _productService.GetProductById(id);
+            await _productService.DeleteProductAsync(product);
             return Ok("Product Deleted");
         }
 

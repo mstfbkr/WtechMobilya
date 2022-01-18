@@ -14,13 +14,13 @@ namespace Mobilya.DataAccess.Abstract
 
         Task<IEnumerable<TEntity>> AddRangeAsync(IEnumerable<TEntity> entities);
 
-        void RemoveAsync(TEntity entity);
+        Task RemoveAsync(TEntity entity);
 
         TEntity Update(TEntity entity);
 
         Task<IEnumerable<TEntity>> GetAllAsync();
 
-        Task<TEntity> GetById(int id);
+        ValueTask<TEntity> GetById(int id);
 
         IEnumerable<TEntity> Find(Expression<Func<TEntity, bool>> predicate);
 

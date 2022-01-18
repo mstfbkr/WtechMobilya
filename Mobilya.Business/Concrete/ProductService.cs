@@ -22,10 +22,10 @@ namespace Mobilya.Business.Concrete
             return await _unitOfWork.product.AddAsync(product);
         }
 
-        public  void DeleteProduct(Product product)
+        public async Task DeleteProductAsync(Product product)
         {
-             _unitOfWork.product.RemoveAsync(product);
-            _unitOfWork.CommitAsync();
+            await _unitOfWork.product.RemoveAsync(product);
+            await _unitOfWork.CommitAsync();
 
         }
 

@@ -34,14 +34,16 @@ namespace Mobilya.DataAccess.Concrete
         {
             return await _mobilyaDBContext.Set<TEntity>().ToListAsync();
         }
-        public async Task<TEntity> GetById(int id)
+        public ValueTask<TEntity> GetById(int id)
         {
-            return await _mobilyaDBContext.Set<TEntity>().FindAsync(id);
+            return  _mobilyaDBContext.Set<TEntity>().FindAsync(id);
         }
-        public void RemoveAsync(TEntity entity)
+
+        public async Task RemoveAsync(TEntity entity)
         {
-            _mobilyaDBContext.Set<TEntity>().Remove(entity);
+              _mobilyaDBContext.Set<TEntity>().Remove(entity);
         }
+
         public TEntity Update(TEntity entity)
         {
             _mobilyaDBContext.Set<TEntity>().Update(entity);

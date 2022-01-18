@@ -12,10 +12,11 @@ namespace Mobilya.Business.Abstract
 
         Task<IEnumerable<Product>> GetAllProduct();
 
-        void DeleteProduct(Product product);
+        Task DeleteProductAsync(Product product);
 
         Task<Product> GetProductById(int id);
 
         Task<Product> UpdateProduct(Product product);
+
     }
 }

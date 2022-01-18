@@ -21,6 +21,7 @@ namespace Mobilya.DataAccess
         public DbSet<Admin> Admins { get; set; }
         public MobilyaDBContext(DbContextOptions<MobilyaDBContext> dbContextOptions) : base(dbContextOptions)
         {
+
         }
         protected override void OnModelCreating(ModelBuilder builder)
         {
