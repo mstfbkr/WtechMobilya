@@ -15,7 +15,7 @@ namespace Mobilya.Entities
         public string CategoryName { get; set; }
         public int CategoryMain { get; set; }
         [Required]
-        public bool CategoryActive { get; set; }
+       
 
        public  ICollection<Product> Products { get; set; }
     }

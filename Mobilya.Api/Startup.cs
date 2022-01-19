@@ -20,7 +20,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks; 
+using System.Threading.Tasks;
 
 namespace Mobilya.Api
 {
@@ -40,13 +40,15 @@ namespace Mobilya.Api
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<MobilyaDBContext>(_dbContext => _dbContext.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
-            
+
             services.AddControllers();
 
             services.AddSwaggerDocument();
             services.AddRazorPages();
 
-
+            services.AddControllersWithViews()
+                  .AddNewtonsoftJson(options =>
+                         options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
             services.AddTransient<IUnitOfWork, UnitOfWork>();
 
             services.AddTransient<ICategoryService, CategoryService>();

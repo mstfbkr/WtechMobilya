@@ -15,9 +15,12 @@ namespace Mobilya.Entities
         [StringLength(50)]
         public string ProductName { get; set; }
         public string ProductDescription { get; set; }
-        public int ProductPrice { get; set; }          
+        public int ProductPrice { get; set; }
 
-        public Category category { get; set; }
+       public Category category { get; set; }
+        public int CategoryId { get; set; }
+
+
 
         public ICollection<Order> Orders { get; set; }
     }

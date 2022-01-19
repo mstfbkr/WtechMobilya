@@ -19,7 +19,9 @@ namespace Mobilya.Business.Concrete
 
         public async Task<Product> CreateProduct(Product product)
         {
-            return await _unitOfWork.product.AddAsync(product);
+             await _unitOfWork.product.AddAsync(product);
+            await _unitOfWork.CommitAsync();
+            return product;
         }
 
         public async Task DeleteProductAsync(Product product)

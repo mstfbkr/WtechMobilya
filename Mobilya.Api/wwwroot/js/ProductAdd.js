@@ -1,6 +1,17 @@
-"use strict";
+ï»¿"use strict";
 var KTModalCustomersAdd = function () {
-    var t, e, o, n, r, i,theContact;
+    var t, e, o, n, r, i, theContact;
+
+
+    function convertUTCDateToLocalDate(date) {
+        var newDate = new Date(date.getTime() + date.getTimezoneOffset() * 60 * 1000);
+        var offset = date.getTimezoneOffset() / 60;
+        var hours = date.getHours();
+        newDate.setHours(hours - offset);
+        return newDate;
+    }
+
+
     return {
         init: function () {
             i = new bootstrap.Modal(document.querySelector("#kt_modal_add_customer")),
@@ -11,75 +22,21 @@ var KTModalCustomersAdd = function () {
                 n = FormValidation.formValidation(r,
                     {
                         fields: {
-                            name: {
+                            productname: {
                                 validators: {
                                     notEmpty: {
-                                        message: "Customer name is required"
-                                    }
-                                },
-                                Surname: {
-                                    validators: {
-                                        notEmpty: {
-                                            message: "Customer Surname is required"
-                                        }
-                                    }
-                                }, email: {
-                                    validators: {
-                                        notEmpty: {
-                                            message: "Customer email is required"
-                                        }
-                                    }
-                                }, password: {
-                                    validators: {
-                                        notEmpty: {
-                                            message: "Customer email is required"
-                                        }
-                                    }
-                                },
-                                "first-name": {
-                                    validators: {
-                                        notEmpty: {
-                                            message: "First name is required"
-                                        }
-                                    }
-                                }, "last-name": {
-                                    validators: {
-                                        notEmpty: {
-                                            message: "Last name is required"
-                                        }
-                                    }
-                                }, country: {
-                                    validators: {
-                                        notEmpty: {
-                                            message: "Country is required"
-                                        }
-                                    }
-                                }, address1: {
-                                    validators: {
-                                        notEmpty: {
-                                            message: "Address 1 is required"
-                                        }
-                                    }
-                                }, city: {
-                                    validators: {
-                                        notEmpty: {
-                                            message: "City is required"
-                                        }
-                                    }
-                                }, state: {
-                                    validators: {
-                                        notEmpty: {
-                                            message: "State is required"
-                                        }
-                                    }
-                                }, postcode: {
-                                    validators: {
-                                        notEmpty: {
-                                            message: "Postcode is required"
-                                        }
+                                        message: "Product name is required"
                                     }
                                 }
-                            }, plugins: {
+                            },
+                            productprice: {
+                                validators: {
+                                    notEmpty: {
+                                        message: "Product Price is required"
+                                    }
+                                }
+                            },
+                            plugins: {
                                 trigger: new FormValidation.plugins.Trigger,
                                 bootstrap: new FormValidation.plugins.Bootstrap5({
                                     rowSelector: ".fv-row",
@@ -88,7 +45,8 @@ var KTModalCustomersAdd = function () {
                                 })
                             }
                         }
-                        });
+
+                    });
 
             $(r.querySelector('[name=""]')).on("change",
                 (function () { n.revalidateField("country") })),
@@ -104,28 +62,31 @@ var KTModalCustomersAdd = function () {
                                             t.removeAttribute("data-kt-indicator"),
                                                 t.disabled = !1,
                                                 theContact = {
-                                                UserName: $("[name='name']").val(),
-                                                    UserSurname: $("[name='Surname']").val(),
-                                                    Email: $("[name='email']").val(),
-                                                PassWord: parseInt($("[name='password']").val())
+                                                    ProductName: $("[name='productname']").val(),
+                                                    ProductDescription: $("[name='productdescription']").val(),
+                                                    ProductPrice: $("[name='productprice']").val(),
+                                                    //CreatingDate: convertUTCDateToLocalDate(new Date(Date.now())),
+                                                    //UpdatedDate: convertUTCDateToLocalDate(new Date(Date.now())),
+                                                    CategoryId: $("[name='categoryÄ±d']").val(),
+                                                    IsActived:"true"
                                                 };
-                                            console.log(theContact);
+                                            console.log(JSON.stringify(theContact));
                                             $.ajax({
                                                 type: "POST",
-                                                url: "https://localhost:44375/api/login/create",
-                                                contentType: "application/json; charset=utf-8",
-                                                data: JSON.stringify(theContact),
+                                                url: "https://localhost:44375/api/Product/Create",
                                                 dataType: "json",
+                                                contentType: "application/json; charset=utf-8",
+                                                data: JSON.stringify(theContact),                                                
                                                 success: function (data) {
                                                     Swal.fire({
-                                                        text: "Kayýt baþarýlý þeklide yapýldý",
+                                                        text: "KayÄ±t baÅŸarÄ±lÄ± ÅŸeklide yapÄ±ldÄ±",
                                                         icon: "success", buttonsStyling: !1, confirmButtonText: "Ok, got it!",
                                                         customClass: { confirmButton: "btn btn-primary" }
                                                     }).then((function (t) { t.isConfirmed && (e.reset(), s.reset()) }))
                                                 },
                                                 error: function (data) {
                                                     Swal.fire({
-                                                        text: "Hata Sistem yöneticisi ile iletiþime geçiniz!",
+                                                        text: "Hata Sistem yÃ¶neticisi ile iletiÅŸime geÃ§iniz!",
                                                         icon: "Hata", buttonsStyling: !1, confirmButtonText: "Ok, got it!",
                                                         customClass: { confirmButton: "btn btn-primary" }
                                                     }).then((function (t) { t.isConfirmed && (e.reset(), s.reset()) }))
@@ -133,7 +94,7 @@ var KTModalCustomersAdd = function () {
                                                 }
 
                                             });
-                                             
+
 
                                             //t.removeAttribute("data-kt-indicator"),
                                             //    Swal.fire({

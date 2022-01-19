@@ -1,4 +1,5 @@
 ﻿"use strict";
+var deneme;
 
 // Class definition
 var KTDatatablesServerSide = function () {
@@ -7,6 +8,9 @@ var KTDatatablesServerSide = function () {
     var dt;
     var filterPayment;
     // Private functions
+
+ 
+  
     var initDatatable = function () {
         dt = $("#kt_datatable_example_1").DataTable({
             searchDelay: 500, 
@@ -14,10 +18,8 @@ var KTDatatablesServerSide = function () {
             serverSide: true,
             order: [[5, 'desc']],
             stateSave: true,
-            dom: 'Bfrtip',
-            buttons: [
-                'copy', 'csv', 'excel', 'pdf', 'print'
-            ],
+            dom: 'ZBlrtip',
+            buttons: ['copy', 'csv', 'excel', 'pdf', 'print'],
             select: {
                 style: 'os',
                 selector: 'td:first-child',
@@ -28,11 +30,13 @@ var KTDatatablesServerSide = function () {
                 type: "POST"
 
             },
-            columns: [
+            columns: [                
                 { data: 'productId' },
                 { data: 'productId' },
                 { data: 'productName' },
+                { data: 'productDescription' },
                 { data: 'productPrice' },
+                { data: 'categoryId' },
                 { data: 'creatingDate' },
                 { data: 'updatedDate' },
                 { data: 'isActived' },
@@ -388,4 +392,11 @@ var KTDatatablesServerSide = function () {
 // On document ready
 KTUtil.onDOMContentLoaded(function () {
     KTDatatablesServerSide.init();
+   
+
 });
+
+//dom: 'Bfrtip',
+//    buttons: [
+//        'copy', 'csv', 'excel', 'pdf', 'print'
+//    ],
