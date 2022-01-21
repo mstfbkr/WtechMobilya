@@ -1,10 +1,16 @@
-﻿using Mobilya.Business.Abstract;
+﻿using Microsoft.Extensions.Options;
+using Microsoft.IdentityModel.Tokens;
+using Mobilya.Business.Abstract;
+using Mobilya.Api.Helpers;
 using Mobilya.DataAccess.Abstract;
 using Mobilya.Entities;
 using System;
 using System.Collections.Generic;
+using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
+
 
 namespace Mobilya.Business.Concrete
 {
@@ -12,10 +18,13 @@ namespace Mobilya.Business.Concrete
     {
         private IUnitOfWork _unitOfWork;
 
+
         public UsersService(IUnitOfWork unitOfWork)
         {
             _unitOfWork = unitOfWork;
         }
+
+
 
         public async Task<Users> CreateUser(Users user)
         {
@@ -37,7 +46,6 @@ namespace Mobilya.Business.Concrete
         {
             return await _unitOfWork.users.GetById(id);
         }
-
         public async Task<Users> UpdateUser(Users user)
         {
             _unitOfWork.users.Update(user);

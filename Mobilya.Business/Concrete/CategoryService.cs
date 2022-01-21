@@ -33,11 +33,10 @@ namespace Mobilya.Business.Concrete
             }
             return newcat;
         }
-
-        public void DeleteCategory(Category category)
+        public async Task DeleteCategoryAsync(Category category)
         {
-            _unitOfWork.category.RemoveAsync(category);
-            _unitOfWork.CommitAsync();
+           await _unitOfWork.category.RemoveAsync(category);
+           await _unitOfWork.CommitAsync();
         }
 
         public async Task<IEnumerable<Category>> GetAllCategory()

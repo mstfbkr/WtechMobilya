@@ -49,19 +49,13 @@ namespace Mobilya.Api
             services.AddControllersWithViews()
                   .AddNewtonsoftJson(options =>
                          options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
-            services.AddTransient<IUnitOfWork, UnitOfWork>();
-
-            services.AddTransient<ICategoryService, CategoryService>();
-            services.AddTransient<IProductService, ProductService>();//requestler ayný olduðu sürece ayný sonuclar üretir 
-            services.AddTransient<GenericHelperMothods>();
-
-
+            //services.AddCors(options =>
+            //                 options.AddDefaultPolicy(builder =>
+            //                 builder.AllowAnyHeader().AllowAnyMethod().AllowAnyOrigin()));
 
 
             //////services.AddTransient  gelen her bir request olayýnda sýnýfý yenileyip sonuc üretir
             //////services.AddSingleton 
-
-
             //nugettan 3.1.3 indirdik
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(opt => opt.TokenValidationParameters = new TokenValidationParameters
             {
@@ -76,6 +70,11 @@ namespace Mobilya.Api
 
             }); //appsettings'e token kodlarý ekledik 
 
+            services.AddTransient<IUnitOfWork, UnitOfWork>();
+            services.AddTransient<ICategoryService, CategoryService>();
+            services.AddTransient<IUserService, UsersService>();
+            services.AddTransient<IProductService, ProductService>();//requestler ayný olduðu sürece ayný sonuclar üretir 
+            services.AddTransient<GenericHelperMothods>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -91,10 +90,13 @@ namespace Mobilya.Api
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
-
-            app.UseAuthentication();
-            //app.UseAuthorization(); 
             app.UseRouting();
+            //app.UseCors(x => x
+            //    .AllowAnyOrigin()
+            //   .AllowAnyMethod()
+            //   .AllowAnyHeader()); //Apilara dýþarýdan eriþim saðlar
+            app.UseAuthentication();
+            //app.UseAuthorization();
             app.UseOpenApi();
             app.UseSwaggerUi3();
             app.UseDefaultFiles();

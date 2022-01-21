@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Mobilya.Api.Helpers;
 using Mobilya.Business.Abstract;
@@ -27,8 +28,8 @@ namespace Mobilya.Api.Controllers
             _mobilyaDBContext = mobilyaDBContext;
         }
 
-       
 
+       
         [HttpPost("GetAlldt")]
         public async Task<ActionResult<IEnumerable<Product>>> GetProducts()
         {
@@ -67,9 +68,19 @@ namespace Mobilya.Api.Controllers
        [HttpPost("[action]")]        
         public async Task<IActionResult> CreateAsync([FromBody] Product product)
         {
-               var createProduct = await _productService.CreateProduct(product);                
-               return Ok(createProduct);
+            try
+            {
+                if (product.ProductId==0)
+                   await _productService.CreateProduct(product);
+                else await _productService.UpdateProduct(product);
+                return Ok(product);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
         }
+        
         [HttpPost("[action]/{id}")]
         public async Task<IActionResult> DeleteAsync(int id)
         {

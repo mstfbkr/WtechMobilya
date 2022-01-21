@@ -7,10 +7,11 @@ var KTDatatablesServerSide = function () {
     var table;
     var dt;
     var filterPayment;
+    var ProductId;
     // Private functions
 
  
-  
+   
     var initDatatable = function () {
         dt = $("#kt_datatable_example_1").DataTable({
             searchDelay: 500, 
@@ -28,7 +29,7 @@ var KTDatatablesServerSide = function () {
             ajax: {
                 url: "https://localhost:44375/api/product/GetAlldt",
                 type: "POST"
-
+                
             },
             columns: [                
                 { data: 'productId' },
@@ -147,7 +148,7 @@ var KTDatatablesServerSide = function () {
             // Filter datatable --- official docs reference: https://datatables.net/reference/api/search()
             dt.search(paymentValue).draw();
         });
-    }
+    } 
     //Edit Datatable row 
     var handleEditRowDatatable = () => {
         const editButton = document.querySelectorAll('[data-kt-customer-table-filter="edit_row"]');
@@ -156,16 +157,19 @@ var KTDatatablesServerSide = function () {
             f.addEventListener('click', function (e) {
                 e.preventDefault();
                 const parent = e.target.closest('tr');
-                var id = parent.querySelectorAll('td')[1].innerText;
-                var companyNumber = parent.querySelectorAll('td')[2].innerText;
-                var companyName = parent.querySelectorAll('td')[3].innerText;
-                var address = parent.querySelectorAll('td')[4].innerText;
-
-                $("[name='company_name']").val(companyName);
-                $("[name='company_citizen_number']").val(companyNumber);
-                $("[name='company_address']").val(address);
-                $("[name='company_id']").val(id);
-                $('#kt_modal_add_company').modal('show');
+                var ProductId = parent.querySelectorAll('td')[1].innerText;
+                var ProductName = parent.querySelectorAll('td')[2].innerText;
+                var ProductDescription = parent.querySelectorAll('td')[3].innerText;
+                var ProductPrice = parent.querySelectorAll('td')[4].innerText;
+                var CategoryId = parent.querySelectorAll('td')[5].innerText;
+                console.log(ProductId);
+                $("[name='productname']").val(ProductName);
+                $("[name='productId']").val(ProductId);
+                $("[name='productdescription']").val(ProductDescription);
+                $("[name='productprice']").val(ProductPrice);
+                $("[name='categoryıd']").val(CategoryId);
+               
+                $('#kt_modal_add_customer').modal('show');
                 //Model id,companyName,companyNumber,address,createDate
             })
 
@@ -183,11 +187,11 @@ var KTDatatablesServerSide = function () {
                 // Select parent row
                 const parent = e.target.closest('tr');
                 // Get customer name
-                const customerName = parent.querySelectorAll('td')[3].innerText;
+                const productName = parent.querySelectorAll('td')[2].innerText;
                 var id = parent.querySelectorAll('td')[1].innerText;
                 // SweetAlert2 pop up --- official docs reference: https://sweetalert2.github.io/
                 Swal.fire({
-                    text: customerName + " Kaydını silmek istediğinizden emin misiniz ?",
+                    text: productName + " Kaydını silmek istediğinizden emin misiniz ?",
                     icon: "warning",
                     showCancelButton: true,
                     buttonsStyling: false,

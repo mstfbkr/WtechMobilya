@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Options;
 using Mobilya.Api.Helpers;
 using Mobilya.Business.Abstract;
 using Mobilya.DataAccess;
@@ -30,6 +31,7 @@ namespace Mobilya.Api.Controllers
         private readonly GenericHelperMothods _genericHelperMothods;
         private readonly IUserService _userService;
 
+
         public LoginController(MobilyaDBContext context, IConfiguration configuration, GenericHelperMothods genericHelperMothods, IUserService userService)
         {
             _context = context;
@@ -48,7 +50,7 @@ namespace Mobilya.Api.Controllers
             }
             return new Response<IEnumerable<Users>>().Ok(user.Count(), user);
         }
-        
+
         [HttpPost("[action]")]//action yazınca metot ismini baz alır "Create" şeklinde baz alır ve /Create şeklinde urlde çıkar
         public async Task<bool> Create([FromBody] Users users)
         {
@@ -58,10 +60,9 @@ namespace Mobilya.Api.Controllers
         }
 
         [HttpPost("[action]")]
-        public async Task<Token> Login([FromBody] UserLogin userLogin)
+        public async  Task<Token> Login([FromBody] UserLogin userLogin)
         {
-            Users user = await _context.Users.FirstOrDefaultAsync(w => w.Email == userLogin.Email && w.PassWord == userLogin.Password);//girilen kullanıcı sistemde var mı diye kontrol eder
-
+            Users user = _context.Users.FirstOrDefault(w => w.Email == userLogin.Email && w.PassWord == userLogin.Password);//girilen kullanıcı sistemde var mı diye kontrol eder
             if (user != null)
             {
                 return await _genericHelperMothods.CreateRefreshToken(user, _context, _configuration);

@@ -14,7 +14,7 @@ namespace Mobilya.Business.Abstract
 
         Task<Category> GetCategoryById(int id);
 
-        void DeleteCategory(Category category);
+        Task DeleteCategoryAsync(Category category);
 
         Task<Category> UpdateCategory(Category category);
 

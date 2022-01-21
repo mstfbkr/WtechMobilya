@@ -28,7 +28,7 @@ namespace Wtech.Api.TokenModels
             Token token = new Token();
 
             //Security Keyin simetriğini(yansımasını) alır
-            SymmetricSecurityKey securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["Token: SecurityKey"]));
+            SymmetricSecurityKey securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["Token:SecurityKey"]));
             SigningCredentials singingCredentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);//Şifreli kimlik oluşturur
 
             token.Expration = DateTime.Now.AddMinutes(5);//Token süresine 5 dk ekler

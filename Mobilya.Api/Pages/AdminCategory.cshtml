@@ -1,8 +1,9 @@
 ﻿@page
-@model Mobilya.Api.Pages.AdminCustomersModel
+@model Mobilya.Api.Pages.AdminCategoryModel
 @{
     Layout = "~/Pages/Shared/AdminLayout.cshtml";
 }
+
 
 <link href="~/lib/datatables/css/dataTables.bootstrap4.min.css" rel="stylesheet" />
 <div class="content d-flex flex-column flex-column-fluid" id="kt_content">
@@ -10,7 +11,7 @@
     <div id="kt_content_container" class="container-xxl">
         <div data-kt-swapper="true" data-kt-swapper-mode="prepend" data-kt-swapper-parent="{default: '#kt_content_container', 'lg': '#kt_toolbar_container'}" class="page-title d-flex align-items-center flex-wrap me-3 mb-5 mb-lg-0">
             <!--begin::Title-->
-            <h1 class="d-flex align-items-center text-dark fw-bolder my-1 fs-3">Customer List</h1>
+            <h1 class="d-flex align-items-center text-dark fw-bolder my-1 fs-3">Category List</h1>
             <!--end::Title-->
             <!--begin::Separator-->
             <span class="h-20px border-gray-200 border-start mx-3"></span>
@@ -28,7 +29,7 @@
                 </li>
                 <!--end::Item-->
                 <!--begin::Item-->
-                <li class="breadcrumb-item text-muted">Apps</li>
+                <li class="breadcrumb-item text-muted">General</li>
                 <!--end::Item-->
                 <!--begin::Item-->
                 <li class="breadcrumb-item">
@@ -36,15 +37,12 @@
                 </li>
                 <!--end::Item-->
                 <!--begin::Item-->
-                <li class="breadcrumb-item text-muted">Customers</li>
+                <li class="breadcrumb-item text-dark">Category Listing</li>
                 <!--end::Item-->
                 <!--begin::Item-->
                 <li class="breadcrumb-item">
-                    <span class="bullet bg-gray-200 w-5px h-2px"></span>
+
                 </li>
-                <!--end::Item-->
-                <!--begin::Item-->
-                <li class="breadcrumb-item text-dark">Customer Listing</li>
                 <!--end::Item-->
             </ul>
             <!--end::Breadcrumb-->
@@ -66,7 +64,7 @@
                             </svg>
                         </span>
                         <!--end::Svg Icon-->
-                        <input type="text" data-kt-customer-table-filter="search" class="form-control form-control-solid w-250px ps-15" placeholder="Search Customers">
+                        <input type="text" data-kt-customer-table-filter="search" class="form-control form-control-solid w-250px ps-15" placeholder="Search Category">
                     </div>
                     <!--end::Search-->
                 </div>
@@ -201,11 +199,9 @@
                                     <input class="form-check-input" type="checkbox" data-kt-check="true" data-kt-check-target="#kt_datatable_example_1 .form-check-input" value="1" />
                                 </div>
                             </th>
-                            <th>Product Id</th>
-                            <th>Product Name</th>
-                            <th>Product Description</th>
-                            <th>Product Price</th>
                             <th>Category Id</th>
+                            <th>Category Name</th>
+                            <th>Category Main</th>
                             <th>Creating Date</th>
                             <th>Updated Date</th>
                             <th>IsActived</th>
@@ -257,11 +253,12 @@
                     <div class="scroll-y me-n7 pe-7" id="kt_modal_add_customer_scroll" data-kt-scroll="true" data-kt-scroll-activate="{default: false, lg: true}" data-kt-scroll-max-height="auto" data-kt-scroll-dependencies="#kt_modal_add_customer_header" data-kt-scroll-wrappers="#kt_modal_add_customer_scroll" data-kt-scroll-offset="300px" style="">
                         <!--begin::Input group-->
                         <div class="fv-row mb-7 fv-plugins-icon-container">
+                            <input name="categoryid" value="0" hidden />
                             <!--begin::Label-->
-                            <label class="required fs-6 fw-bold mb-2">Product Name</label>
+                            <label class="required fs-6 fw-bold mb-2">Category Name</label>
                             <!--end::Label-->
                             <!--begin::Input-->
-                            <input type="text" class="form-control form-control-solid" placeholder="" name="productname">
+                            <input type="text" class="form-control form-control-solid" placeholder="" name="categoryname">
                             <!--end::Input-->
                             <div class="fv-plugins-message-container invalid-feedback"></div>
                         </div>
@@ -270,325 +267,34 @@
                         <div class="fv-row mb-7 fv-plugins-icon-container">
                             <!--begin::Label-->
                             <label class="fs-6 fw-bold mb-2">
-                                <span class="produc-description">Product Description</span>
+                                <span class="produc-description">Category Main</span>
                             </label>
                             <!--end::Label-->
                             <!--begin::Input-->
-                            <input type="text" class="form-control form-control-solid" placeholder="" name="productdescription">
+                            <input type="text" class="form-control form-control-solid" placeholder="" name="categorymain" value="0">
                             <!--end::Input-->
                             <div class="fv-plugins-message-container invalid-feedback"></div>
                         </div>
                         <!--end::Input group-->
                         <!--begin::Input group-->
-                        <div class="fv-row mb-15">
-                            <!--begin::Label-->
-                            <label class="fs-6 fw-bold mb-2">Product Price</label>
-                            <!--end::Label-->
-                            <!--begin::Input-->
-                            <input type="text" class="form-control form-control-solid" placeholder="" name="productprice">
-                            <!--end::Input-->
-                        </div>
-                        <div class="fv-row mb-15">
-                            <!--begin::Label-->
-                            <label class="fs-6 fw-bold mb-2">Product Category Id</label>
-                            <!--end::Label-->
-                            <!--begin::Input-->
-                            <input type="text" class="form-control form-control-solid" placeholder="" name="categoryıd">
-                            <!--end::Input-->
-                        </div>
-                        <!--end::Input group-->
-                        <!--begin::Billing toggle-->
-                        <!--end::Billing toggle-->
-                        <!--begin::Billing form-->
-                        <!--end::Input group-->
-                           <!--begin::Input group-->
-                        <!--end::Input group-->
-                        <!--begin::Input group-->
-                        <!--end::Input group-->
-                        <!--begin::Input group-->
+                       
+                        
                         <!--end::Input group-->
                         <!--begin::Input group-->
                         <!--<div class="d-flex flex-column mb-7 fv-row fv-plugins-icon-container">-->
-                            <!--begin::Label-->
-                            <!--<label class="fs-6 fw-bold mb-2">
-                                <span class="required">Country</span>
-                                <i class="fas fa-exclamation-circle ms-1 fs-7" data-bs-toggle="tooltip" title="" data-bs-original-title="Country of origination" aria-label="Country of origination"></i>
-                            </label>-->
-                            <!--end::Label-->
-                            <!--begin::Input-->
-                            <!--<select name="country" aria-label="Select a Country" data-control="select2" data-placeholder="Select a Country..." data-dropdown-parent="#kt_modal_add_customer" class="form-select form-select-solid fw-bolder select2-hidden-accessible" data-select2-id="select2-data-10-m94y" tabindex="-1" aria-hidden="true">
-                                <option value="">Select a Country...</option>
-                                <option value="AF">Afghanistan</option>
-                                <option value="AX">Aland Islands</option>
-                                <option value="AL">Albania</option>
-                                <option value="DZ">Algeria</option>
-                                <option value="AS">American Samoa</option>
-                                <option value="AD">Andorra</option>
-                                <option value="AO">Angola</option>
-                                <option value="AI">Anguilla</option>
-                                <option value="AG">Antigua and Barbuda</option>
-                                <option value="AR">Argentina</option>
-                                <option value="AM">Armenia</option>
-                                <option value="AW">Aruba</option>
-                                <option value="AU">Australia</option>
-                                <option value="AT">Austria</option>
-                                <option value="AZ">Azerbaijan</option>
-                                <option value="BS">Bahamas</option>
-                                <option value="BH">Bahrain</option>
-                                <option value="BD">Bangladesh</option>
-                                <option value="BB">Barbados</option>
-                                <option value="BY">Belarus</option>
-                                <option value="BE">Belgium</option>
-                                <option value="BZ">Belize</option>
-                                <option value="BJ">Benin</option>
-                                <option value="BM">Bermuda</option>
-                                <option value="BT">Bhutan</option>
-                                <option value="BO">Bolivia, Plurinational State of</option>
-                                <option value="BQ">Bonaire, Sint Eustatius and Saba</option>
-                                <option value="BA">Bosnia and Herzegovina</option>
-                                <option value="BW">Botswana</option>
-                                <option value="BR">Brazil</option>
-                                <option value="IO">British Indian Ocean Territory</option>
-                                <option value="BN">Brunei Darussalam</option>
-                                <option value="BG">Bulgaria</option>
-                                <option value="BF">Burkina Faso</option>
-                                <option value="BI">Burundi</option>
-                                <option value="KH">Cambodia</option>
-                                <option value="CM">Cameroon</option>
-                                <option value="CA">Canada</option>
-                                <option value="CV">Cape Verde</option>
-                                <option value="KY">Cayman Islands</option>
-                                <option value="CF">Central African Republic</option>
-                                <option value="TD">Chad</option>
-                                <option value="CL">Chile</option>
-                                <option value="CN">China</option>
-                                <option value="CX">Christmas Island</option>
-                                <option value="CC">Cocos (Keeling) Islands</option>
-                                <option value="CO">Colombia</option>
-                                <option value="KM">Comoros</option>
-                                <option value="CK">Cook Islands</option>
-                                <option value="CR">Costa Rica</option>
-                                <option value="CI">Côte d'Ivoire</option>
-                                <option value="HR">Croatia</option>
-                                <option value="CU">Cuba</option>
-                                <option value="CW">Curaçao</option>
-                                <option value="CZ">Czech Republic</option>
-                                <option value="DK">Denmark</option>
-                                <option value="DJ">Djibouti</option>
-                                <option value="DM">Dominica</option>
-                                <option value="DO">Dominican Republic</option>
-                                <option value="EC">Ecuador</option>
-                                <option value="EG">Egypt</option>
-                                <option value="SV">El Salvador</option>
-                                <option value="GQ">Equatorial Guinea</option>
-                                <option value="ER">Eritrea</option>
-                                <option value="EE">Estonia</option>
-                                <option value="ET">Ethiopia</option>
-                                <option value="FK">Falkland Islands (Malvinas)</option>
-                                <option value="FJ">Fiji</option>
-                                <option value="FI">Finland</option>
-                                <option value="FR">France</option>
-                                <option value="PF">French Polynesia</option>
-                                <option value="GA">Gabon</option>
-                                <option value="GM">Gambia</option>
-                                <option value="GE">Georgia</option>
-                                <option value="DE">Germany</option>
-                                <option value="GH">Ghana</option>
-                                <option value="GI">Gibraltar</option>
-                                <option value="GR">Greece</option>
-                                <option value="GL">Greenland</option>
-                                <option value="GD">Grenada</option>
-                                <option value="GU">Guam</option>
-                                <option value="GT">Guatemala</option>
-                                <option value="GG">Guernsey</option>
-                                <option value="GN">Guinea</option>
-                                <option value="GW">Guinea-Bissau</option>
-                                <option value="HT">Haiti</option>
-                                <option value="VA">Holy See (Vatican City State)</option>
-                                <option value="HN">Honduras</option>
-                                <option value="HK">Hong Kong</option>
-                                <option value="HU">Hungary</option>
-                                <option value="IS">Iceland</option>
-                                <option value="IN">India</option>
-                                <option value="ID">Indonesia</option>
-                                <option value="IR">Iran, Islamic Republic of</option>
-                                <option value="IQ">Iraq</option>
-                                <option value="IE">Ireland</option>
-                                <option value="IM">Isle of Man</option>
-                                <option value="IL">Israel</option>
-                                <option value="IT">Italy</option>
-                                <option value="JM">Jamaica</option>
-                                <option value="JP">Japan</option>
-                                <option value="JE">Jersey</option>
-                                <option value="JO">Jordan</option>
-                                <option value="KZ">Kazakhstan</option>
-                                <option value="KE">Kenya</option>
-                                <option value="KI">Kiribati</option>
-                                <option value="KP">Korea, Democratic People's Republic of</option>
-                                <option value="KW">Kuwait</option>
-                                <option value="KG">Kyrgyzstan</option>
-                                <option value="LA">Lao People's Democratic Republic</option>
-                                <option value="LV">Latvia</option>
-                                <option value="LB">Lebanon</option>
-                                <option value="LS">Lesotho</option>
-                                <option value="LR">Liberia</option>
-                                <option value="LY">Libya</option>
-                                <option value="LI">Liechtenstein</option>
-                                <option value="LT">Lithuania</option>
-                                <option value="LU">Luxembourg</option>
-                                <option value="MO">Macao</option>
-                                <option value="MG">Madagascar</option>
-                                <option value="MW">Malawi</option>
-                                <option value="MY">Malaysia</option>
-                                <option value="MV">Maldives</option>
-                                <option value="ML">Mali</option>
-                                <option value="MT">Malta</option>
-                                <option value="MH">Marshall Islands</option>
-                                <option value="MQ">Martinique</option>
-                                <option value="MR">Mauritania</option>
-                                <option value="MU">Mauritius</option>
-                                <option value="MX">Mexico</option>
-                                <option value="FM">Micronesia, Federated States of</option>
-                                <option value="MD">Moldova, Republic of</option>
-                                <option value="MC">Monaco</option>
-                                <option value="MN">Mongolia</option>
-                                <option value="ME">Montenegro</option>
-                                <option value="MS">Montserrat</option>
-                                <option value="MA">Morocco</option>
-                                <option value="MZ">Mozambique</option>
-                                <option value="MM">Myanmar</option>
-                                <option value="NA">Namibia</option>
-                                <option value="NR">Nauru</option>
-                                <option value="NP">Nepal</option>
-                                <option value="NL">Netherlands</option>
-                                <option value="NZ">New Zealand</option>
-                                <option value="NI">Nicaragua</option>
-                                <option value="NE">Niger</option>
-                                <option value="NG">Nigeria</option>
-                                <option value="NU">Niue</option>
-                                <option value="NF">Norfolk Island</option>
-                                <option value="MP">Northern Mariana Islands</option>
-                                <option value="NO">Norway</option>
-                                <option value="OM">Oman</option>
-                                <option value="PK">Pakistan</option>
-                                <option value="PW">Palau</option>
-                                <option value="PS">Palestinian Territory, Occupied</option>
-                                <option value="PA">Panama</option>
-                                <option value="PG">Papua New Guinea</option>
-                                <option value="PY">Paraguay</option>
-                                <option value="PE">Peru</option>
-                                <option value="PH">Philippines</option>
-                                <option value="PL">Poland</option>
-                                <option value="PT">Portugal</option>
-                                <option value="PR">Puerto Rico</option>
-                                <option value="QA">Qatar</option>
-                                <option value="RO">Romania</option>
-                                <option value="RU">Russian Federation</option>
-                                <option value="RW">Rwanda</option>
-                                <option value="BL">Saint Barthélemy</option>
-                                <option value="KN">Saint Kitts and Nevis</option>
-                                <option value="LC">Saint Lucia</option>
-                                <option value="MF">Saint Martin (French part)</option>
-                                <option value="VC">Saint Vincent and the Grenadines</option>
-                                <option value="WS">Samoa</option>
-                                <option value="SM">San Marino</option>
-                                <option value="ST">Sao Tome and Principe</option>
-                                <option value="SA">Saudi Arabia</option>
-                                <option value="SN">Senegal</option>
-                                <option value="RS">Serbia</option>
-                                <option value="SC">Seychelles</option>
-                                <option value="SL">Sierra Leone</option>
-                                <option value="SG">Singapore</option>
-                                <option value="SX">Sint Maarten (Dutch part)</option>
-                                <option value="SK">Slovakia</option>
-                                <option value="SI">Slovenia</option>
-                                <option value="SB">Solomon Islands</option>
-                                <option value="SO">Somalia</option>
-                                <option value="ZA">South Africa</option>
-                                <option value="KR">South Korea</option>
-                                <option value="SS">South Sudan</option>
-                                <option value="ES">Spain</option>
-                                <option value="LK">Sri Lanka</option>
-                                <option value="SD">Sudan</option>
-                                <option value="SR">Suriname</option>
-                                <option value="SZ">Swaziland</option>
-                                <option value="SE">Sweden</option>
-                                <option value="CH">Switzerland</option>
-                                <option value="SY">Syrian Arab Republic</option>
-                                <option value="TW">Taiwan, Province of China</option>
-                                <option value="TJ">Tajikistan</option>
-                                <option value="TZ">Tanzania, United Republic of</option>
-                                <option value="TH">Thailand</option>
-                                <option value="TG">Togo</option>
-                                <option value="TK">Tokelau</option>
-                                <option value="TO">Tonga</option>
-                                <option value="TT">Trinidad and Tobago</option>
-                                <option value="TN">Tunisia</option>
-                                <option value="TR">Turkey</option>
-                                <option value="TM">Turkmenistan</option>
-                                <option value="TC">Turks and Caicos Islands</option>
-                                <option value="TV">Tuvalu</option>
-                                <option value="UG">Uganda</option>
-                                <option value="UA">Ukraine</option>
-                                <option value="AE">United Arab Emirates</option>
-                                <option value="GB">United Kingdom</option>
-                                <option value="US" selected="selected" data-select2-id="select2-data-12-iz7o">United States</option>
-                                <option value="UY">Uruguay</option>
-                                <option value="UZ">Uzbekistan</option>
-                                <option value="VU">Vanuatu</option>
-                                <option value="VE">Venezuela, Bolivarian Republic of</option>
-                                <option value="VN">Vietnam</option>
-                                <option value="VI">Virgin Islands</option>
-                                <option value="YE">Yemen</option>
-                                <option value="ZM">Zambia</option>
-                                <option value="ZW">Zimbabwe</option>
-                            </select>
-                            <span class="select2 select2-container select2-container--bootstrap5" dir="ltr" data-select2-id="select2-data-11-t2xo" style="width: 100%;">
-                                <span class="selection">
-                                    <span class="select2-selection select2-selection--single form-select form-select-solid fw-bolder" role="combobox" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-disabled="false" aria-labelledby="select2-country-5i-container" aria-controls="select2-country-5i-container">
-                                        <span class="select2-selection__rendered" id="select2-country-5i-container" role="textbox" aria-readonly="true" title="United States">United States</span>
-                                        <span class="select2-selection__arrow" role="presentation">
-                                            <b role="presentation">
-                                            </b>
-                                        </span>
-                                    </span>
-                                </span>
-                                <span class="dropdown-wrapper" aria-hidden="true"></span>
-                            </span>-->
-                            <!--end::Input-->
-                            <!--<div class="fv-plugins-message-container invalid-feedback"></div>
+                        <!--begin::Label-->
+                        <!--<label class="fs-6 fw-bold mb-2">
+                            <span class="required">Country</span>
+                            <i class="fas fa-exclamation-circle ms-1 fs-7" data-bs-toggle="tooltip" title="" data-bs-original-title="Country of origination" aria-label="Country of origination"></i>
+                        </label>-->
+                        <!--end::Label-->
+                        <!--begin::Input-->
+                        <!--end::Input-->
+                        <!--<div class="fv-plugins-message-container invalid-feedback"></div>
                         </div>-->
                         <!--end::Input group-->
                         <!--begin::Input group-->
-                        <div class="fv-row mb-7">
-                            <!--begin::Wrapper-->
-                            <div class="d-flex flex-stack">
-                                <!--begin::Label-->
-                                <div class="me-5">
-                                    <div class="me-5">
-                                        <!--begin::Label-->
-                                        <label class="fs-6 fw-bold">Use as a billing adderess?</label>
-                                        <!--end::Label-->
-                                        <!--begin::Input-->
-                                        <div class="fs-7 fw-bold text-muted">If you need more info, please check budget planning</div>
-                                        <!--end::Input-->
-                                    </div>
-                                    <!--end::Label-->
-                                    <!--begin::Switch-->
-                                    <label class="form-check form-switch form-check-custom form-check-solid">
-                                        <!--begin::Input-->
-                                        <input class="form-check-input" name="billing" type="checkbox" value="1" id="kt_modal_add_customer_billing" checked="checked">
-                                        <!--end::Input-->
-                                        <!--begin::Label-->
-                                        <span class="form-check-label fw-bold text-muted" for="kt_modal_add_customer_billing">Yes</span>
-                                        <!--end::Label-->
-                                    </label>
-                                    <!--end::Switch-->
-                                </div>
-                                <!--begin::Wrapper-->
-                            </div>
-                            <!--end::Input group-->
-                        </div>
+                       
                         <!--end::Billing form-->
                     </div>
                     <!--end::Scroll-->
@@ -614,7 +320,7 @@
             </form>
         </div>
 
-        
+
         <!--end::Form-->
     </div>
 </div>
@@ -747,23 +453,15 @@
 </div>
 <!--end::Modal - New Card-->
 <!--end::Modals-->
-
 <!--end::Container-->
-					
-
-
-
-
-
-
 <!--begin::Javascript-->
 
 @section Scripts{
     <script src="~/NewJs/plugins.bundle.js"></script>
     <script src="~/NewJs/scripts.bundle.js"></script>
     <script src="~/NewJs/datatables.bundle.js"></script>
-    <script src="~/js/ProductDtNew.js"></script>
-    <script src="~/js/ProductAdd.js"></script>
+    <script src="~/js/Categoryjs/CategoryDt.js"></script>
+    <script src="~/js/Categoryjs/CategoryAdd.js"></script>
 }
 
 <!--end::Page Custom Javascript-->

@@ -1,8 +1,8 @@
 ﻿"use strict";
 var KTModalCustomersAdd = function () {
-    var t, e, o, n, r, i, theContact;
+    var t, e, o, n, r, i, theContact,productId;
 
-
+    
     function convertUTCDateToLocalDate(date) {
         var newDate = new Date(date.getTime() + date.getTimezoneOffset() * 60 * 1000);
         var offset = date.getTimezoneOffset() / 60;
@@ -58,10 +58,16 @@ var KTModalCustomersAdd = function () {
                                     "Valid" == e ? (t.setAttribute("data-kt-indicator", "on"),
                                         t.disabled = !0,
                                         setTimeout((function () {
-
+                                            if ($("[name='productId']").val() == "0") {
+                                                productId = 0;
+                                            } else {
+                                                productId = parseInt($("[name='productId']").val())
+                                            }
                                             t.removeAttribute("data-kt-indicator"),
                                                 t.disabled = !1,
-                                                theContact = {
+                                               
+                                            theContact = {
+                                                     ProductId: productId,
                                                     ProductName: $("[name='productname']").val(),
                                                     ProductDescription: $("[name='productdescription']").val(),
                                                     ProductPrice: $("[name='productprice']").val(),
@@ -79,7 +85,7 @@ var KTModalCustomersAdd = function () {
                                                 data: JSON.stringify(theContact),                                                
                                                 success: function (data) {
                                                     Swal.fire({
-                                                        text: "Kayıt başarılı şeklide yapıldı",
+                                                        text: "İşlem başarılı şeklide yapıldı",
                                                         icon: "success", buttonsStyling: !1, confirmButtonText: "Ok, got it!",
                                                         customClass: { confirmButton: "btn btn-primary" }
                                                     }).then((function (t) { t.isConfirmed && (e.reset(), s.reset()) }))

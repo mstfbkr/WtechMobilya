@@ -28,7 +28,6 @@ namespace Mobilya.Business.Concrete
         {
             await _unitOfWork.product.RemoveAsync(product);
             await _unitOfWork.CommitAsync();
-
         }
 
         public async Task<IEnumerable<Product>> GetAllProduct()

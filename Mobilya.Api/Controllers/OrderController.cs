@@ -28,11 +28,10 @@ namespace Mobilya.Api.Controllers
             if (!orders.Any())
             {
                 return new Response<IEnumerable<Order>>().NoContent();
-            } 
+            }
             
             return new Response<IEnumerable<Order>>().Ok(orders.Count(), orders);
         }
-
 
         [HttpPost]
         [Route("[action]")]

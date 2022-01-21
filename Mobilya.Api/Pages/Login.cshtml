@@ -48,7 +48,7 @@
                             <!--begin::Link-->
                             <div class="text-gray-400 fw-bold fs-4">
                                 New Here?
-                                <a href="/metronic8/demo1/../demo1/authentication/layouts/basic/sign-up.html" class="link-primary fw-bolder">Create an Account</a>
+                                <a href="/register" class="link-primary fw-bolder">Create an Account</a>
                             </div>
                             <!--end::Link-->
                         </div>
@@ -144,7 +144,9 @@
 
     <script type="text/javascript">
         $(document).ready(function () {
+           
             $("#kt_sign_in_submit").click(function (event) {
+                event.preventDefault();
                 var theContact = {
                     email: $("[name='email']").val(),
                     password: $("[name='password']").val()
@@ -153,20 +155,20 @@
 
                 $.ajax({
                     type: "POST",
-                    url: "https://localhost:44375/api/login/login",
+                    url: "https://localhost:44375/api/Login/Login",
                     contentType: "application/json; charset=utf-8",
                     data: JSON.stringify(theContact),
                     dataType: "json",
                     success: function (data) {
                         $("#kt_sign_up_submit").removeAttr("disabled");
-                        alert("işlem tamam asdklfj")
-                    
-                                window.location.href = "/Anasayfa";
-                          
+                        
+                        console.log(data);
+                                window.location.href = "/AdminCustomers";                        
    
                     },
                     error: function (data) {
                         $("#kt_sign_up_submit").removeAttr("disabled");
+                        console.log(JSON.stringify(data));
                     }
                 });
             });
